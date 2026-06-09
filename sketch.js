@@ -366,7 +366,7 @@ function drawCredits() {
   let a2 = constrain(map(millis() - creditStartTime, 1200, 2700, 0, 255), 0, 255);
   fill(205, 212, 235, a2);
   textSize(20);
-  text("문예창작학과 김서연      경영학부 안채민      글로벌미디어학부 임한솔", width / 2, height / 2 + 80);
+  text("문예창작학과 김연서      경영학부 안채민      글로벌미디어학부 임한솔", width / 2, height / 2 + 80);
 }
 
 // =====================================
