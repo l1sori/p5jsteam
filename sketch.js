@@ -819,6 +819,8 @@ function carve(startX, startY) {
 function drawMaze() {
   fill(145, 110, 75);
   noStroke();
+  
+  // 1. 길 그리기 (문제없이 잘 작동하는 부분)
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (maze[y][x] === 0) {
@@ -834,6 +836,7 @@ function drawMaze() {
       }
     }
   }
+
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (maze[y][x] === 1) {
