@@ -490,14 +490,18 @@ function drawNameBox(name) {
 // 마우스 클릭 이벤트 관리
 // =====================================
 function mousePressed() {
-   userStartAudio();
-  
+  userStartAudio(); // 브라우저 오디오 권한 허용 (필수)
+
+  // ❌ 여기에 있던 forestMusic 관련 3줄을 완전히 삭제했습니다! ❌
+
+  // 전체화면 처리
   if (!enteredFullscreen) {
     let fs = fullscreen();
     fullscreen(!fs);
     enteredFullscreen = true;
   }
 
+  // 상태에 따른 화면 전환
   if (gameState === "TITLE") {
     gameState = "STORY_1";
     currentIdx = 0;
@@ -532,7 +536,6 @@ function mousePressed() {
   } else if (gameState === "STORY_4") {
     handleStoryClick(dialogues4);
   }
-  // CREDITS: 클릭해도 종료 화면 유지
 }
 
 function handleStoryClick(currentDialogues) {
