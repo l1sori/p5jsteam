@@ -226,9 +226,12 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont('Georgia, "Malgun Gothic", serif');
-  initGame();        // 미로 초기화
-  initCaveGame();    // 동굴 초기화
-  resetForestGame(); // 숲속 길 초기화
+
+  groundY = height - 50; // ✅ 이거 추가 (핵심)
+
+  initGame();
+  initCaveGame();
+  resetForestGame();
 }
 
 // =====================================
