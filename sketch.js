@@ -645,7 +645,10 @@ function drawMinigameMaze() {
 }
 
 let tile; // ✅ tile 전역으로 선언 (중요)
-
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  initGame();
+}
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   initGame();
