@@ -492,7 +492,7 @@ function drawNameBox(name) {
 function mousePressed() {
    userStartAudio();
 
-  if (forestMusic && !forestMusic.isPlaying()) {
+  if (forestMusic && typeof forestMusic.isPlaying === 'function' && !forestMusic.isPlaying()) {
     forestMusic.loop();
   }
   if (!enteredFullscreen) {
