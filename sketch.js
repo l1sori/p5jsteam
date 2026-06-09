@@ -747,17 +747,23 @@ function drawFairySpeechBubble() {
   let msg = "히로야 드디어 코하쿠의\n정원을 탈출했어!";
   let bx = fx - 95;
   let by = fy - 50;
+  
   push();
   fill(255);
   stroke(255, 220, 100);
   strokeWeight(3);
   triangle(fx - 4, fy - 4, bx + 25, by + 28, bx + 45, by + 28);
   rectMode(CENTER);
-  rect(bx, by, 180, 60, 15);
+  
+  // ✅ 텍스트 상자 크기 비율 조정
+  rect(bx, by, 190, 55, 15);
+  
   noStroke();
   fill(0);
   textAlign(CENTER, CENTER);
-  textSize(15);
+  
+  // ✅ 글자 크기를 13으로 줄임
+  textSize(13);
   textStyle(BOLD);
   text(msg, bx, by);
   pop();
@@ -1062,17 +1068,24 @@ function drawIntroScreen() {
   fill(255, 255, 255, 240);
   stroke(255, 200, 0);
   strokeWeight(2);
-  rect(bx, by, 480, 80, 15);
+  
+  // ✅ 텍스트 상자 크기 조절
+  rect(bx, by, 490, 75, 15);
 
   noStroke();
   fill(255, 255, 255, 240);
-  triangle(bx + 20, by + 80, bx + 35, by + 80, bx + 28, by + 95);
+  // ✅ 상자 크기에 맞춰 말풍선 꼬리표 위치 조절
+  triangle(bx + 20, by + 75, bx + 35, by + 75, bx + 28, by + 90);
 
   fill(0);
-  textSize(20);
+  
+  // ✅ 글자 크기를 16으로 줄임
+  textSize(16);
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
-  text("이 동굴 어딘가에 마법사가 숨긴 황금 열쇠가 숨겨져 있대.\n어서 찾으러 가자!", bx + 240, by + 40);
+  
+  // ✅ 글자가 상자 중앙에 완벽히 오도록 텍스트 좌표 변경 (bx + 245, by + 37)
+  text("이 동굴 어딘가에 마법사가 숨긴 황금 열쇠가 숨겨져 있대.\n어서 찾으러 가자!", bx + 245, by + 37);
   pop();
 
   if (elapsed > 10000) {
@@ -1081,7 +1094,6 @@ function drawIntroScreen() {
     shownStartMsg = true;
   }
 }
-
 function showFairyMsg(msg, duration) {
   fairyMsg = msg;
   fairyMsgStart = millis();
