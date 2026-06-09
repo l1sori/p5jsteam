@@ -217,11 +217,6 @@ function preload() {
   if (!bgImages["first.jpg"]) bgImages["first.jpg"] = loadImage("first.jpg");
   if (!bgImages["hiro9.jpg"]) bgImages["hiro9.jpg"] = loadImage("hiro9.jpg");
 
-  // 음악 (p5.sound 미탑재 환경에서도 에러 없이 동작)
-  if (typeof loadSound === 'function') {
-    soundFormats("mp3");
-    forestMusic = loadSound("music.mp3");
-  }
 }
 
 function setup() {
