@@ -217,11 +217,9 @@ function preload() {
   if (!bgImages["first.jpg"]) bgImages["first.jpg"] = loadImage("first.jpg");
   if (!bgImages["hiro9.jpg"]) bgImages["hiro9.jpg"] = loadImage("hiro9.jpg");
 
-function preload() {
+
   soundFormats("mp3");
   forestMusic = loadSound("music.mp3");
-}
-
   
 }
 
@@ -496,12 +494,13 @@ function mousePressed() {
 
   if (forestMusic && !forestMusic.isPlaying()) {
     forestMusic.loop();
-    
+  }
   if (!enteredFullscreen) {
     let fs = fullscreen();
     fullscreen(!fs);
     enteredFullscreen = true;
   }
+}
 
   if (gameState === "TITLE") {
     gameState = "STORY_1";
