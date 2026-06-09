@@ -789,16 +789,34 @@ function drawSpeechBubble(x, y) {
   pop();
 }
 
-function carve(x, y) {
-  let dirs = [[2, 0], [-2, 0], [0, 2], [0, -2]];
-  shuffle(dirs, true);
-  for (let d of dirs) {
-    let nx = x + d[0];
-    let ny = y + d[1];
-    if (nx > 0 && nx < cols - 1 && ny > 0 && ny < rows - 1 && maze[ny][nx] === 1) {
-      maze[ny][nx] = 0;
-      maze[y + d[1] / 2][x + d[0] / 2] = 0;
-      carve(nx, ny);
+function carve(startX, startY) {
+  let stack = [{ x: startX, y: startY }];
+  maze[startY][startX] = 0;
+
+  while (stack.length > 0) {
+    let current = stack[stack.length - 1];
+    let dirs = [[2, 0], [-2, 0], [0, 2], [0, -2]];
+    shuffle(dirs, true); 
+
+    let carved = false;
+    for (let d of dirs) {
+      let nx = current.x + d[0];
+      let ny = current.y + d[1];
+
+      // 다음 타일이 범위 안이고 아직 벽(1)이라면 길을 뚫음
+      if (nx > 0 && nx < cols - 1 && ny > 0 && ny < rows - 1 && maze[ny][nx] === 1) {
+        maze[ny][nx] = 0; 
+        maze[current.y + d[1] / 2][current.x + d[0] / 2] = 0; 
+        
+        stack.push({ x: nx, y: ny });
+        carved = true;
+        break; 
+      }
+    }
+    
+    // 더 이상 뚫을 곳이 없으면 뒤로 한 칸 돌아감
+    if (!carved) {
+      stack.pop();
     }
   }
 }
