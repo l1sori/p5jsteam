@@ -492,6 +492,11 @@ function drawNameBox(name) {
 // 마우스 클릭 이벤트 관리
 // =====================================
 function mousePressed() {
+   userStartAudio();
+
+  if (forestMusic && !forestMusic.isPlaying()) {
+    forestMusic.loop();
+    
   if (!enteredFullscreen) {
     let fs = fullscreen();
     fullscreen(!fs);
