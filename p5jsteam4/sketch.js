@@ -648,7 +648,22 @@ function drawMinigameMaze() {
   }
 }
 
+let tile; // ✅ tile 전역으로 선언 (중요)
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  initGame();
+}
+
 function initGame() {
+  // ✅ 셀 개수 기준으로 먼저 설정 (비율 유지 핵심)
+  cols = 41;
+  rows = 25;
+
+  // ✅ 화면에 맞게 tile 자동 계산
+  tile = min(width / cols, height / rows);
+
+  // ✅ 다시 cols/rows 보정 (홀수 유지)
   cols = floor(width / tile);
   rows = floor(height / tile);
 
@@ -666,6 +681,7 @@ function initGame() {
       wallData[y][x] = createWallData();
     }
   }
+
   carve(1, 1);
   maze[1][1] = 0;
 
@@ -676,11 +692,13 @@ function initGame() {
       break;
     }
   }
+
   if (!exitCell) {
     maze[rows - 2][cols - 2] = 0;
     maze[rows - 2][cols - 3] = 0;
     exitCell = { x: cols - 2, y: rows - 2 };
   }
+
   mazePlayer = {
     x: tile + tile / 2,
     y: tile + tile / 2
@@ -690,7 +708,6 @@ function initGame() {
   moveCooldown = 0;
   generatePuddles();
 }
-
 function generatePuddles() {
   puddles = [];
   let emptyCells = [];
