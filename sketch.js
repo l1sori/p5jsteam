@@ -139,7 +139,7 @@ let isWaitingForText = false;
 // =====================================
 // 미니게임 1: 가시 덩굴 미로 변수들
 // =====================================
-let tile = 40;
+
 let cols;
 let rows;
 let maze = [];
@@ -645,10 +645,6 @@ function drawMinigameMaze() {
 }
 
 let tile; // ✅ tile 전역으로 선언 (중요)
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  initGame();
-}
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   initGame();
@@ -1685,14 +1681,6 @@ function keyPressed() {
   if (key === 'f' || key === 'F') fullscreen(!fullscreen());
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  cols = floor(width / tile);
-  rows = floor(height / tile);
-  if (cols % 2 === 0) cols--;
-  if (rows % 2 === 0) rows--;
-  groundY = height - 50;
-}
 
 // =====================================
 // 동굴 게임 엔티티 클래스 정의
