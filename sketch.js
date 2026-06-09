@@ -79,7 +79,7 @@ let dialogues2 = [
   { name: "요정", text: "그리고 또, 코하쿠 마을에서는,", bg: "hiro7.jpg" },
   { name: "히로", text: "고마워. 그리고 미안. 나는 집에 갈 거야. 무슨 일이 있어도. 그건 포기 못, 아니, 안 할거야.", bg: "hiro7.jpg" },
   { name: "히로", text: "그 길고 힘들었던 미로도 헤쳐나왔는걸? 잘 할 수 있는 것 같은 느낌이 들어.", bg: "hiro7.jpg" },
-  { name: "요정", text: "하하, 좋아! 그러면 나도 무슨 일이 있어도 네가 지븡로 돌아갈 수 있도록 도와줄게. 이제 더 집중해야 한다?", bg: "hiro7.jpg" },
+  { name: "요정", text: "하하, 좋아! 그러면 나도 무슨 일이 있어도 네가 집으로 돌아갈 수 있도록 도와줄게. 이제 더 집중해야 한다?", bg: "hiro7.jpg" },
   { name: "요정", text: "그러면 이제 들어가자!", bg: "hiro7.jpg" },
 ];
 
@@ -208,20 +208,12 @@ let creditStartTime = 0;
 // =====================================
 function preload() {
   let allDialogues = dialogues1.concat(dialogues2).concat(dialogues3).concat(dialogues4);
-
   for (let i = 0; i < allDialogues.length; i++) {
     let bgName = allDialogues[i].bg;
     if (bgName !== "" && !bgImages[bgName]) {
       bgImages[bgName] = loadImage(bgName);
     }
   }
-
-  forestMusic = loadSound(
-    "music.mp3",
-    () => console.log("음악 로딩 성공"),
-    () => console.log("음악 로딩 실패")
-  );
-  
   if (!bgImages["first.jpg"]) bgImages["first.jpg"] = loadImage("first.jpg");
   if (!bgImages["hiro9.jpg"]) bgImages["hiro9.jpg"] = loadImage("hiro9.jpg");
   
@@ -231,7 +223,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont('Georgia, "Malgun Gothic", serif');
   
-//forestMusic = loadSound("music.mp3");
+forestMusic = loadSound("music.mp3");
   groundY = height - 50; // ✅ 이거 추가 (핵심)
 
   initGame();
@@ -1897,4 +1889,5 @@ class Bat {
   }
   offscreen() { return this.x < -100; }
 }
+
 
