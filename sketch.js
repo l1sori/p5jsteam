@@ -652,14 +652,17 @@ function windowResized() {
 }
 
 function initGame() {
-  // ✅ 셀 개수 기준으로 먼저 설정 (비율 유지 핵심)
   cols = 41;
   rows = 25;
 
-  // ✅ 화면에 맞게 tile 자동 계산
-tile = floor(min(width / cols, height / rows));
+  let tileX = width / cols;
+  let tileY = height / rows;
 
-  // ✅ 다시 cols/rows 보정 (홀수 유지)
+  tile = floor(min(tileX, tileY));
+
+  // ✅ 안전장치 (이거 없으면 화면 안 나옴)
+  if (tile < 5) tile = 5;
+
   cols = floor(width / tile);
   rows = floor(height / tile);
 
