@@ -216,17 +216,14 @@ function preload() {
   }
   if (!bgImages["first.jpg"]) bgImages["first.jpg"] = loadImage("first.jpg");
   if (!bgImages["hiro9.jpg"]) bgImages["hiro9.jpg"] = loadImage("hiro9.jpg");
-
-
-  //soundFormats("mp3");
-  //forestMusic = loadSound("music.mp3");
   
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont('Georgia, "Malgun Gothic", serif');
-
+  
+forestMusic = loadSound("music.mp3");
   groundY = height - 50; // ✅ 이거 추가 (핵심)
 
   initGame();
