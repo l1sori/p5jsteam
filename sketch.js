@@ -491,10 +491,7 @@ function drawNameBox(name) {
 // =====================================
 function mousePressed() {
    userStartAudio();
-
-  if (forestMusic && typeof forestMusic.isPlaying === 'function' && !forestMusic.isPlaying()) {
-    forestMusic.loop();
-  }
+  
   if (!enteredFullscreen) {
     let fs = fullscreen();
     fullscreen(!fs);
