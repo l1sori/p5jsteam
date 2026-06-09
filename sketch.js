@@ -500,7 +500,6 @@ function mousePressed() {
     fullscreen(!fs);
     enteredFullscreen = true;
   }
-}
 
   if (gameState === "TITLE") {
     gameState = "STORY_1";
