@@ -208,12 +208,20 @@ let creditStartTime = 0;
 // =====================================
 function preload() {
   let allDialogues = dialogues1.concat(dialogues2).concat(dialogues3).concat(dialogues4);
+
   for (let i = 0; i < allDialogues.length; i++) {
     let bgName = allDialogues[i].bg;
     if (bgName !== "" && !bgImages[bgName]) {
       bgImages[bgName] = loadImage(bgName);
     }
   }
+
+  forestMusic = loadSound(
+    "music.mp3",
+    () => console.log("음악 로딩 성공"),
+    () => console.log("음악 로딩 실패")
+  );
+  
   if (!bgImages["first.jpg"]) bgImages["first.jpg"] = loadImage("first.jpg");
   if (!bgImages["hiro9.jpg"]) bgImages["hiro9.jpg"] = loadImage("hiro9.jpg");
   
@@ -223,7 +231,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont('Georgia, "Malgun Gothic", serif');
   
-forestMusic = loadSound("music.mp3");
+//forestMusic = loadSound("music.mp3");
   groundY = height - 50; // ✅ 이거 추가 (핵심)
 
   initGame();
