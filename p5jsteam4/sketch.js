@@ -657,7 +657,7 @@ function initGame() {
   rows = 25;
 
   // ✅ 화면에 맞게 tile 자동 계산
-  tile = min(width / cols, height / rows);
+tile = floor(min(width / cols, height / rows));
 
   // ✅ 다시 cols/rows 보정 (홀수 유지)
   cols = floor(width / tile);
