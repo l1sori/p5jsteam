@@ -579,6 +579,11 @@ function handleStoryClick(currentDialogues) {
 // =====================================
 // 미니게임 1: 가시 덩굴 미로 구동 시스템
 // =====================================
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  initGame(); // 창 크기가 변할 때마다 미로 데이터를 에러 없이 새로 깔아줌
+}
+
 function drawMinigameMaze() {
   if (minigameState === "gameover") {
     background(30, 0, 0);
