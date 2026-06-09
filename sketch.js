@@ -218,8 +218,8 @@ function preload() {
   if (!bgImages["hiro9.jpg"]) bgImages["hiro9.jpg"] = loadImage("hiro9.jpg");
 
 
-  soundFormats("mp3");
-  forestMusic = loadSound("music.mp3");
+  //soundFormats("mp3");
+  //forestMusic = loadSound("music.mp3");
   
 }
 
