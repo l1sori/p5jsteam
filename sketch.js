@@ -367,7 +367,7 @@ function drawCredits() {
   let a2 = constrain(map(millis() - creditStartTime, 1200, 2700, 0, 255), 0, 255);
   fill(205, 212, 235, a2);
   textSize(20);
-  text("문예창작학과 김연서      경영학부 안채민      글로벌미디어학부 임한솔", width / 2, height / 2 + 80);
+  text("문예창작학과 김서연      경영학부 안채민      글로벌미디어학부 임한솔", width / 2, height / 2 + 80);
 }
 
 // =====================================
@@ -579,6 +579,11 @@ function handleStoryClick(currentDialogues) {
 // =====================================
 // 미니게임 1: 가시 덩굴 미로 구동 시스템
 // =====================================
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  initGame(); // 창 크기가 변할 때마다 미로 데이터를 에러 없이 새로 깔아줌
+}
+
 function drawMinigameMaze() {
   if (minigameState === "gameover") {
     background(30, 0, 0);
@@ -643,7 +648,22 @@ function drawMinigameMaze() {
   }
 }
 
+let tile; // ✅ tile 전역으로 선언 (중요)
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  initGame();
+}
+
 function initGame() {
+  // ✅ 셀 개수 기준으로 먼저 설정 (비율 유지 핵심)
+  cols = 41;
+  rows = 25;
+
+  // ✅ 화면에 맞게 tile 자동 계산
+  tile = min(width / cols, height / rows);
+
+  // ✅ 다시 cols/rows 보정 (홀수 유지)
   cols = floor(width / tile);
   rows = floor(height / tile);
 
@@ -661,6 +681,7 @@ function initGame() {
       wallData[y][x] = createWallData();
     }
   }
+
   carve(1, 1);
   maze[1][1] = 0;
 
@@ -671,11 +692,13 @@ function initGame() {
       break;
     }
   }
+
   if (!exitCell) {
     maze[rows - 2][cols - 2] = 0;
     maze[rows - 2][cols - 3] = 0;
     exitCell = { x: cols - 2, y: rows - 2 };
   }
+
   mazePlayer = {
     x: tile + tile / 2,
     y: tile + tile / 2
@@ -685,7 +708,6 @@ function initGame() {
   moveCooldown = 0;
   generatePuddles();
 }
-
 function generatePuddles() {
   puddles = [];
   let emptyCells = [];
@@ -791,7 +813,7 @@ function carve(startX, startY) {
   while (stack.length > 0) {
     let current = stack[stack.length - 1];
     let dirs = [[2, 0], [-2, 0], [0, 2], [0, -2]];
-    shuffle(dirs, true); // 랜덤한 방향으로 섞기
+    shuffle(dirs, true); 
 
     let carved = false;
     for (let d of dirs) {
@@ -800,16 +822,16 @@ function carve(startX, startY) {
 
       // 다음 타일이 범위 안이고 아직 벽(1)이라면 길을 뚫음
       if (nx > 0 && nx < cols - 1 && ny > 0 && ny < rows - 1 && maze[ny][nx] === 1) {
-        maze[ny][nx] = 0; // 새 위치 길로 만들기
-        maze[current.y + d[1] / 2][current.x + d[0] / 2] = 0; // 사이 벽 허물기
+        maze[ny][nx] = 0; 
+        maze[current.y + d[1] / 2][current.x + d[0] / 2] = 0; 
         
         stack.push({ x: nx, y: ny });
         carved = true;
-        break; // 한 방향을 뚫었으면 다시 스택 맨 위부터 탐색 시작
+        break; 
       }
     }
     
-    // 더 이상 사방으로 갈 곳이 없으면 막다른 길이므로 뒤로 돌아감
+    // 더 이상 뚫을 곳이 없으면 뒤로 한 칸 돌아감
     if (!carved) {
       stack.pop();
     }
@@ -819,8 +841,6 @@ function carve(startX, startY) {
 function drawMaze() {
   fill(145, 110, 75);
   noStroke();
-  
-  // 1. 길 그리기 (문제없이 잘 작동하는 부분)
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (maze[y][x] === 0) {
@@ -836,7 +856,6 @@ function drawMaze() {
       }
     }
   }
-
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (maze[y][x] === 1) {
