@@ -207,6 +207,7 @@ let creditStartTime = 0;
 // SETUP & PRELOAD
 // =====================================
 function preload() {
+  forestMusic = loadSound("music.mp3");
   let allDialogues = dialogues1.concat(dialogues2).concat(dialogues3).concat(dialogues4);
   for (let i = 0; i < allDialogues.length; i++) {
     let bgName = allDialogues[i].bg;
@@ -223,7 +224,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont('Georgia, "Malgun Gothic", serif');
   
-forestMusic = loadSound("music.mp3");
   groundY = height - 50; // ✅ 이거 추가 (핵심)
 
   initGame();
